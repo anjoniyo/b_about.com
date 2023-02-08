@@ -1,0 +1,116 @@
+<?php 
+
+include "config.php";
+
+  if (isset($_POST['submit'])) {
+    $user_id = $_POST['id'];
+
+    $first_name = $_POST['firstname'];
+
+    $last_name = $_POST['lastname'];
+
+    $email = $_POST['email'];
+
+    $password = $_POST['password'];
+
+    $gender = $_POST['gender'];
+    $passwordmd5= md5($password);
+    $sql = "INSERT INTO `users`(`id`,`firstname`, `lastname`, `email`, `password`, `gender`) VALUES ('$user_id','$first_name','$last_name','$email','$passwordmd5','$gender')";
+
+    $result = $conn->query($sql);
+
+    if ($result == TRUE) {
+
+      echo "New record created successfully.";
+
+    }else{
+
+      echo "Error:". $sql . "<br>". $conn->error;
+
+    } 
+
+    $conn->close(); 
+
+  }
+
+?>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+<link rel="stylesheet" type= "text/css" href="style.css "> </head>
+<body>
+
+<h2>Signup Form</h2>
+
+<form action="" method="POST">
+
+  <fieldset>
+
+    <legend>Personal information:</legend>
+    User_ID:<br>
+
+    <input type="text" name="id">
+    <br>
+
+    First name:<br>
+
+    <input type="text" name="firstname">
+
+    <br>
+
+    Last name:<br>
+
+    <input type="text" name="lastname">
+
+    <br>
+
+    Email:<br>
+
+    <input type="email" name="email">
+
+    <br>
+
+    Password:<br>
+
+    <input type="password" name="password">
+
+    <br>
+
+    Gender:<br>
+
+    <input type="radio" name="gender" value="Male">Male
+
+    <input type="radio" name="gender" value="Female">Female
+
+    <br><br>
+
+    <input type="submit" name="submit" value="submit">
+
+  </fieldset>
+
+</form>
+<div class="header">
+<h2>Login Form</h2>
+</div>
+<form action="" method="POST">
+
+  <fieldset>
+    
+<div class="input -group">
+     <label>Username</label>&nbsp;<input type="text" placeholder="email" name="email">
+	 
+</div>
+    <br>
+<div class="input -group">
+        <label>Password</label>&nbsp;<input type ="password" placeholder="password" name="password">
+</div>
+    <br>
+<div class="input -group">
+   <a href="Index.html"> <input type="submit" value="Login" style="margin-left:5;width:50px;height: 30px;background-color: red;color: white;"></a>
+<div>
+  </fieldset>
+</body>
+
+</html>
